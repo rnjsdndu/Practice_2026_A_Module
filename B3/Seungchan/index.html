@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{min-height:100vh;width:100vw;}
+    div{width:100px;height:100px;background:red;transition: 1s linear;}
+  </style>
+</head>
+<body>
+  <div></div>
+  <script>
+    const $ = e => document.querySelector(e);
+    const $$ = e => [...document.querySelectorAll(e)];
+    
+    const $box = $('div')
+    
+    let x = 0;
+    let y = 0;
+
+    let maxX = 0;
+    let maxY = 0;
+
+    function updateLimit() {
+      maxX = window.innerWidth - $box.offsetWidth
+      maxY = window.innerHeight - $box.offsetHeight
+    }
+
+    
+    updateLimit();
+
+    function draw() {
+      $box.style.transform = `translate(${x}px, ${y}px)`;
+    }
+  
+    x = (maxX / 2)
+    y = (maxY / 2)
+
+    draw();
+
+    function move(dx, dy) {
+      x += dx
+      y += dy
+
+      if(maxX <= x) x = maxX;
+      if(maxY <= y) y = maxY;
+      if(y <= 0) y = 0
+      if(x <= 0) x = 0
+
+      draw()
+    }
+
+    window.addEventListener('keydown', (e) =>{
+      if (e.key == 'ArrowLeft') move(-10, 0)
+      if (e.key == 'ArrowRight') move(10, 0)
+      if (e.key == 'ArrowUp') move(0, -10)
+      if (e.key == 'ArrowDown') move(0, 10)
+    })
+
+    window.addEventListener('resize', updateLimit)
+  </script>
+</body>
+</html>

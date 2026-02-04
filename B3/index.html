@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{min-height:100vh;width:100vw;position:relative}
+    div{width:100px;height:100px;background:red;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+  </style>
+</head>
+<body>
+  <div></div>
+  <script>
+    const box = document.querySelector("div");
+let offsetX = 0, offsetY = 0;
+const STEP = 10;
+
+window.addEventListener("keydown", (event) => {
+
+  const viewportWidth = document.documentElement.clientWidth;
+  const viewportHeight = document.documentElement.clientHeight;
+
+  const boxWidth = box.offsetWidth;
+  const boxHeight = box.offsetHeight;
+
+  const maxOffsetX = (viewportWidth - boxWidth) / 2;
+  const maxOffsetY = (viewportHeight - boxHeight) / 2;
+
+  if (Math.abs(nextOffsetX) > maxOffsetX) return;
+  if (Math.abs(nextOffsetY) > maxOffsetY) return;
+
+  offsetX = nextOffsetX;
+  offsetY = nextOffsetY;
+
+  box.style.transform =
+    `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`;
+}, { passive: false });
+
+  </script>
+</body>
+</html>
