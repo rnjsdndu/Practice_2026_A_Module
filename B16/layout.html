@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: #dc3545;
+            background-color: #f8d7da;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #007bff;
+            background-color: white;
+            color: #007bff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .filter-btn.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .filter-btn:hover {
+            background-color: #0056b3;
+            color: white;
+            border-color: #0056b3;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .todo-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .todo-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .todo-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .todo-item.completed {
+            background-color: #f8f9fa;
+            opacity: 0.8;
+        }
+
+        .todo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .todo-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        .todo-item.completed .todo-title {
+            text-decoration: line-through;
+            color: #666;
+        }
+
+        .todo-badges {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .priority-high {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .priority-medium {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .priority-low {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .category-badge {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .status-badge {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .todo-description {
+            color: #666;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+
+        .todo-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .date-info {
+            display: flex;
+            gap: 15px;
+        }
+
+        .reload-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 24px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .reload-btn:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .todo-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .todo-footer {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Todo List</h1>
+        
+        <div class="stats" id="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-label">전체</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="completedCount">0</div>
+                <div class="stat-label">완료</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="pendingCount">0</div>
+                <div class="stat-label">진행중</div>
+            </div>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active">전체</button>
+            <button class="filter-btn">진행중</button>
+            <button class="filter-btn">완료</button>
+            <button class="filter-btn">높은 우선순위</button>
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">
+            데이터를 불러오는 중...
+        </div>
+
+        <div id="error" class="error" style="display: none;"></div>
+
+        <div class="todo-list" id="todoList">
+                <div class="todo-item ">
+                    <div class="todo-header">
+                        <h3 class="todo-title">{title}</h3>
+                        <div class="todo-badges">
+                            <span class="badge priority-high">높음</span>
+                            <span class="badge status-badge">진행중</span>
+                        </div>
+                    </div>
+                    <p class="todo-description">{description}</p>
+                    <div class="todo-footer">
+                        <div class="date-info">
+                            <span>📅 마감: {dueDate}</span>
+                            <span>📝 생성: {createdAt}</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="todo-item completed">
+                    <div class="todo-header">
+                        <h3 class="todo-title">{title}</h3>
+                        <div class="todo-badges">
+                            <span class="badge priority-medium">보통</span>
+                            <span class="badge status-badge">완료</span>
+                        </div>
+                    </div>
+                    <p class="todo-description">{description}</p>
+                    <div class="todo-footer">
+                        <div class="date-info">
+                            <span>📅 마감: {dueDate}</span>
+                            <span>📝 생성: {createdAt}</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="todo-item ">
+                    <div class="todo-header">
+                        <h3 class="todo-title">{title}</h3>
+                        <div class="todo-badges">
+                            <span class="badge priority-medium">보통</span>
+                            <span class="badge status-badge">진행중</span>
+                        </div>
+                    </div>
+                    <p class="todo-description">{description}</p>
+                    <div class="todo-footer">
+                        <div class="date-info">
+                            <span>📅 마감: {dueDate}</span>
+                            <span>📝 생성: {createdAt}</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="todo-item ">
+                    <div class="todo-header">
+                        <h3 class="todo-title">{title}</h3>
+                        <div class="todo-badges">
+                            <span class="badge priority-high">높음</span>
+                            <span class="badge status-badge">진행중</span>
+                        </div>
+                    </div>
+                    <p class="todo-description">{description}</p>
+                    <div class="todo-footer">
+                        <div class="date-info">
+                            <span>📅 마감: {dueDate}</span>
+                            <span>📝 생성: {createdAt}</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="todo-item ">
+                    <div class="todo-header">
+                        <h3 class="todo-title">{title}</h3>
+                        <div class="todo-badges">
+                            <span class="badge priority-low">낮음</span>
+                            <span class="badge status-badge">진행중</span>
+                        </div>
+                    </div>
+                    <p class="todo-description">{description}</p>
+                    <div class="todo-footer">
+                        <div class="date-info">
+                            <span>📅 마감: {dueDate}</span>
+                            <span>📝 생성: {createdAt}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+</body></html>

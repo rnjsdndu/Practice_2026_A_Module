@@ -1,0 +1,124 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "프로젝트 기획서 작성",
+      "description": "새로운 웹 애플리케이션 프로젝트의 기획서를 작성하고 팀원들과 공유",
+      "completed": false,
+      "priority": "high",
+      "category": "업무",
+      "dueDate": "2026-08-05",
+      "createdAt": "2026-07-25"
+    },
+    {
+      "id": 2,
+      "title": "장보기",
+      "description": "마트에서 이번 주 식재료 구매 - 채소, 육류, 생필품",
+      "completed": true,
+      "priority": "medium",
+      "category": "생활",
+      "dueDate": "2026-07-30",
+      "createdAt": "2026-07-28"
+    },
+    {
+      "id": 3,
+      "title": "운동하기",
+      "description": "헬스장에서 1시간 운동 - 유산소 30분, 근력운동 30분",
+      "completed": false,
+      "priority": "medium",
+      "category": "건강",
+      "dueDate": "2026-07-31",
+      "createdAt": "2026-07-29"
+    },
+    {
+      "id": 4,
+      "title": "JavaScript 스터디",
+      "description": "ES6+ 문법 정리 및 실습 예제 작성",
+      "completed": false,
+      "priority": "high",
+      "category": "학습",
+      "dueDate": "2026-08-02",
+      "createdAt": "2026-07-26"
+    },
+    {
+      "id": 5,
+      "title": "친구 만나기",
+      "description": "오랜만에 대학 동창들과 저녁 식사 약속",
+      "completed": false,
+      "priority": "low",
+      "category": "사교",
+      "dueDate": "2026-08-03",
+      "createdAt": "2026-07-27"
+    },
+    {
+      "id": 6,
+      "title": "책 읽기",
+      "description": "클린 코드 책 3장까지 읽고 정리하기",
+      "completed": true,
+      "priority": "medium",
+      "category": "학습",
+      "dueDate": "2026-07-29",
+      "createdAt": "2026-07-24"
+    },
+    {
+      "id": 7,
+      "title": "이메일 정리",
+      "description": "받은 편지함의 중요한 이메일들 폴더별로 정리",
+      "completed": false,
+      "priority": "low",
+      "category": "업무",
+      "dueDate": "2026-08-01",
+      "createdAt": "2026-07-30"
+    },
+    {
+      "id": 8,
+      "title": "블로그 포스팅",
+      "description": "이번 주 학습한 내용을 정리해서 기술 블로그에 포스팅",
+      "completed": false,
+      "priority": "medium",
+      "category": "학습",
+      "dueDate": "2026-08-04",
+      "createdAt": "2026-07-28"
+    },
+    {
+      "id": 9,
+      "title": "치과 예약",
+      "description": "정기 검진을 위한 치과 예약 잡기",
+      "completed": true,
+      "priority": "high",
+      "category": "건강",
+      "dueDate": "2026-07-30",
+      "createdAt": "2026-07-25"
+    },
+    {
+      "id": 10,
+      "title": "방 청소",
+      "description": "책상 정리, 바닥 청소, 옷장 정리하기",
+      "completed": false,
+      "priority": "low",
+      "category": "생활",
+      "dueDate": "2026-08-01",
+      "createdAt": "2026-07-29"
+    },
+    {
+      "id": 11,
+      "title": "프레젠테이션 준비",
+      "description": "다음 주 회의에서 발표할 자료 준비 및 연습",
+      "completed": false,
+      "priority": "high",
+      "category": "업무",
+      "dueDate": "2026-08-06",
+      "createdAt": "2026-07-30"
+    },
+    {
+      "id": 12,
+      "title": "온라인 강의 수강",
+      "description": "React 강의 5강까지 완주하기",
+      "completed": false,
+      "priority": "medium",
+      "category": "학습",
+      "dueDate": "2026-08-07",
+      "createdAt": "2026-07-26"
+    }
+  ]
+}
