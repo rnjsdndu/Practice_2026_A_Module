@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Image → Canvas</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      canvas {
+        border: 2.5px solid #000;
+        border-radius: 10px;
+        margin-top: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <input type="file" id="file" accept="image/*" />
+    <canvas id="cv" width="600" height="400"></canvas>
+    <button class="b">흑백</button>
+    <button class="s">세피아</button>
+    <button class="r">반전</button>
+    <script>
+      const input = document.getElementById("file");
+      const canvas = document.getElementById("cv");
+      const ctx = canvas.getContext("2d");
+      const black = document.querySelector('.b')
+      const sefia = document.querySelector('.s')
+      const reversal = document.querySelector('.r')
+
+      input.addEventListener("change", async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const img = await createImageBitmap(file);
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const w = (img.width = canvas.width);
+        const h = (img.height = canvas.height);
+        const x = (canvas.width - w) / 2;
+        const y = (canvas.height - h) / 2;
+
+        ctx.drawImage(img, x, y, w, h);
+      });
+
+      black.addEventListener('click', ()=>{
+        img.classList.add
+      })
+    </script>
+  </body>
+</html>

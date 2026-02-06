@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul></ul>
+  <script>
+    const $fetch = path => fetch(path).then((res) => res.json())
+    let data = [];
+    const list = document.querySelector('ul');
+
+    async function init() {
+      await getData();
+      render();
+      bindEvents();
+    }
+
+    async function getData() {
+      data = await $fetch('./data.json');
+    }
+
+    function render() {
+      list.innerHTML =''
+      data.forEach(e=>{
+        const li = document.createElement('li')
+        li.innerHTML = `
+          <p>${e.name}</p>
+          <span data-id="${e.id}">${localStorage.getItem(e.id) ? '★' : '☆'}</span>
+        `
+        list.appendChild(li)
+      })
+
+    }
+
+    function bindEvents() {
+      list.addEventListener('click', e=>{
+        const fav = e.target.closest('span');
+        if(!fav) return
+        const id = fav.dataset.id;
+        localStorage.getItem(id) ? localStorage.removeItem(id) : localStorage.setItem(id,1);
+        render();
+      })
+    }
+
+
+    init()
+
+  </script>
+</body>
+</html>
