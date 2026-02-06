@@ -5,38 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{min-height:100vh;width:100vw;position:relative}
-    div{width:100px;height:100px;background:red;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+    body{height:100vh;width:100vw;}
+    div{width:100px;height:100px;background:red;}
   </style>
 </head>
 <body>
   <div></div>
   <script>
-    const box = document.querySelector("div");
-let offsetX = 0, offsetY = 0;
-const STEP = 10;
+    const $ = e => document.querySelector(e)
 
-window.addEventListener("keydown", (event) => {
+    const $box = $('div')
 
-  const viewportWidth = document.documentElement.clientWidth;
-  const viewportHeight = document.documentElement.clientHeight;
+    let x = 0
+    let y = 0
 
-  const boxWidth = box.offsetWidth;
-  const boxHeight = box.offsetHeight;
+    let maxX = 0
+    let maxY = 0
 
-  const maxOffsetX = (viewportWidth - boxWidth) / 2;
-  const maxOffsetY = (viewportHeight - boxHeight) / 2;
+    function getWindow() {
+      maxX = window.innerWidth - $box.offsetWidth
+      maxY = window.innerHeight - $box.offsetHeight
+    }
 
-  if (Math.abs(nextOffsetX) > maxOffsetX) return;
-  if (Math.abs(nextOffsetY) > maxOffsetY) return;
+    getWindow()
 
-  offsetX = nextOffsetX;
-  offsetY = nextOffsetY;
+    function move(dx, dy) {
+      x += dx
+      y += dy
 
-  box.style.transform =
-    `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`;
-}, { passive: false });
+      if(maxX <= x) x = maxX;
+      if(maxY <= y) y = maxY;
+      if(y <= 0) y = 0
+      if(x <= 0) x = 0
 
+      render()
+    }
+    
+    x = (maxX / 2)
+    y = (maxY / 2)
+
+    render()
+
+    window.addEventListener('keydown', (e) => {
+      if(e.key == 'ArrowLeft') move(-10, 0)
+      if(e.key == 'ArrowRight') move(10, 0)
+      if(e.key == 'ArrowUp') move(0, -10)
+      if(e.key == 'ArrowDown') move(0, 10)
+    })
+
+    function render() {
+      $box.style.transform = `translate(${x}px,${y}px)`
+    }
+
+    window.addEventListener('resize', getWindow)
   </script>
 </body>
 </html>

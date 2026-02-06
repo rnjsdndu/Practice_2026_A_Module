@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" maxlength="1" pattern="[1-9]">
+  <input type="text" maxlength="1" pattern="[1-9]">
+  <input type="text" maxlength="1" pattern="[1-9]">
+  <input type="text" maxlength="1" pattern="[1-9]">
+  <input type="text" maxlength="1" pattern="[1-9]">
+  <input type="text" maxlength="1" pattern="[1-9]">
+  <button disabled>제출</button>
+  
+  <script>
+    const input = [...document.querySelectorAll('input')]
+    const button = document.querySelector('button')
+
+    input.forEach((e,i)=>{
+      e.addEventListener('input', ()=>{
+        if(!e.value || i == input.length - 1) return check()
+        input[i+1].focus()
+        check()
+      })
+      
+      e.addEventListener('keydown', k=>{
+        if(k.key != 'Backspace' || e.value || i == 0) return
+        input[i-1].focus()
+      })
+    })
+    
+    function check() {
+      const hasValue = input.every(e => e.value)
+      button.disabled = !hasValue
+    }
+  </script>
+</body>
+</html>
