@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간단한 파이 그래프</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        input, button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .clear-btn {
+            background-color: #dc3545;
+        }
+
+        .clear-btn:hover {
+            background-color: #c82333;
+        }
+
+        #canvas {
+            border: 1px solid #ddd;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .data-list {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .data-item {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: white;
+            border-radius: 3px;
+            border-left: 4px solid #007bff;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>간단한 파이 그래프</h1>
+        
+        <div class="controls">
+            <input type="text" id="labelInput" placeholder="항목명">
+            <input type="number" id="valueInput" placeholder="값" min="0">
+            <button >추가</button>
+            <button class="clear-btn" >초기화</button>
+        </div>
+
+        <canvas id="canvas" width="500" height="500"></canvas>
+
+        <div class="legend" id="legend">
+            <!--
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #ff6b6b"></div>
+                <span>A (50%)</span>
+            </div><div class="legend-item">
+                <div class="legend-color" style="background-color: #4ecdc4"></div>
+                <span>B (25%)</span>
+            </div><div class="legend-item">
+                <div class="legend-color" style="background-color: #45b7d1"></div>
+                <span>C (25%)</span>
+            </div>
+        -->
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .loading{animation: spin 4s infinite ease-in-out; width: 400px; height: 400px; display: grid; grid-template-columns: repeat(2,1fr); align-items: center; justify-items: center;}
+    div > div{width: 100px; height: 100px; border-radius: 100%; }
+
+    .skyblue{animation: one 2s infinite ease-in-out; background-color: skyblue; }
+    .purple{animation: two 2s infinite ease-in-out; background-color: purple;}
+    .pink{animation: three 2s infinite ease-in-out; background-color: pink;}
+    .orange{animation: four 2s infinite ease-in-out; background-color: orange;}
+
+    @keyframes spin {
+      25%{transform: rotate(90deg);}
+      50%{transform: rotate(180deg);}
+      75%{transform: rotate(270deg);}
+      100%{transform: rotate(360deg);}
+    }
+
+    @keyframes one {
+      50%{transform: translate(50px, 50px);}
+    }
+
+    @keyframes two {
+      50%{transform: translate(-50px, 50px);}
+    }
+
+    @keyframes three {
+      50%{transform: translate(50px, -50px);}
+    }
+
+    @keyframes four {
+      50%{transform: translate(-50px, -50px);}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="loading">
+    <div class="skyblue"></div>
+    <div class="purple"></div>
+    <div class="pink"></div>
+    <div class="orange"></div>
+  </div>
+</body>
+</html>

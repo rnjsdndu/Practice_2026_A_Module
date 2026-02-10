@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .flex{display: flex;}
+  </style>
+</head>
+<body>
+  <h2>To-Do 리스트</h2>
+  <div class="flex">
+    <input type="text" placeholder="할 일을 입력하세요">
+    <button>추가</button>
+  </div>
+  <ul class="list">
+  </ul>
+
+  <script>
+    const btn = document.querySelector('button')
+    const input = document.querySelector('input')
+    const list = document.querySelector('.list')
+
+    btn.addEventListener('click', ()=>{
+      
+      const li = document.createElement('li')
+      
+      li.innerHTML = `
+        <p>${input.value}</p>
+        <span class="remove">X</span>
+      `
+        
+      input.value=''
+
+      list.appendChild(li);
+    })
+
+    list.addEventListener('click', e=>{
+      const t = e.target.closest('.remove');
+      if(!t) return;
+      e.target.parentNode.remove();
+    })
+
+    
+  </script>
+</body>
+</html>

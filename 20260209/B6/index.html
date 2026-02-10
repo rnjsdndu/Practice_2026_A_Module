@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .drop{width: 800px; height: 800px; border: 1px solid black;}
+  </style>
+</head>
+<body>
+  <div class="item">
+    <img src="./test-images/test1.gif">
+    <img src="./test-images/test1.jpg">
+    <img src="./test-images/test1.png">
+    <img src="./test-images/test2.gif">
+    <img src="./test-images/test2.jpg">
+    <img src="./test-images/test2.png">
+  </div>
+
+  <div class="drop">
+
+  </div>
+  <button>초기화</button>
+
+  <script>
+    const item = document.querySelector('.item')
+    const drop = document.querySelector('.drop')
+    const button = document.querySelector('button')
+    item.querySelectorAll('img').forEach(img =>{
+      img.addEventListener('drag',e=>{
+        e.target.classList.add('dragging')
+      })
+    })
+    
+    drop.addEventListener('dragover', e=>{
+      e.preventDefault();
+    })
+    
+    drop.addEventListener('drop',e=>{
+      e.preventDefault();
+      const img = item.querySelector('.dragging')
+      drop.appendChild(img)
+    })
+
+    button.addEventListener('click',()=>{
+      const img = [...drop.querySelectorAll('img')]
+      img.forEach(e=>{
+        item.appendChild(e)
+      })
+    })
+  </script>
+</body>
+</html>
