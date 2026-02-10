@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>비밀번호</p>
+  <input type="text" style="outline: none;">
+
+  <script>
+    const input = document.querySelector('input');
+
+    // 빈 값 → 검정
+    // 6자 미만 → 빨강
+    // 8자 이상 + 모든 조건 → 초록
+    // 6자 이상 + 일부 조건 → 주황
+    // 나머지 → 빨강
+    input.addEventListener('input', (e)=>{
+      const o = /[A-Z]/.test(input.value);
+      const s = /\d+/.test(input.value);
+      const t = /[!@#$%^&)*(]/.test(input.value);
+      if(!input.value) {
+        input.style.borderColor = 'black'
+      } else if(input.value.length < 6) {
+        input.style.borderColor = 'red'
+      } else if(input.value.length >= 8 && o && s && t) {
+        input.style.borderColor = 'green'
+      } else if(input.value.length >= 6 && (o || s)) {
+        input.style.borderColor = 'orange'
+      } else {
+        input.style.borderColor = 'red'
+      }
+    })
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <video src="./test-video.mp4"></video>
+  <p class="current"></p>/<p class="duration"></p>
+  <button id="play">일시정지/재생</button>
+  <button id="re">10초 되감기</button>
+  <button id="for">10초 빨리감기</button>
+  <button id="mute">소리 음소거/음소거 해제</button>
+
+  <script>
+    const video = document.querySelector('video')
+    const current = document.querySelector('.current')
+    const duration = document.querySelector('.duration')
+
+    document.body.addEventListener('click', e=>{
+      // 여기서의 &&는 조건부 실행 AND가 아님
+      // A && B = A의 값이 true면 B를 실행
+      const btn = e.target.closest('button')
+      if(!btn) return;
+      btn.id == 'play' && video.paused ? video.play() : video.pause();
+      btn.id == 're' &&(video.currentTime -= 10);
+      btn.id == 'for' && (video.currentTime += 10);
+      btn.id == 'mute' && (video.muted = !video.muted)
+    })
+
+    function formatTime(time) {
+      const minute = Math.floor(time / 60);
+      const sec = Math.floor(time % 60);
+      return `${minute} : ${sec.toString().padStart(2, '0')}`
+    }
+
+    setInterval(() => {
+      current.textContent = formatTime(video.currentTime)
+    }, 10);
+
+    video.addEventListener('loadedmetadata',()=>{
+      duration.textContent = formatTime(video.duration)
+    })
+
+
+
+
+  </script>
+</body>
+</html>

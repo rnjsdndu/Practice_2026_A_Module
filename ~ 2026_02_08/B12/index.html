@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Image → Canvas</title>
+    <style>
+    </style>
+  </head>
+
+  <body>
+    <input type="file"/>
+    <img src="">
+    <button data-filter="grayscale(100%)">흑백</button>
+    <button data-filter="sepia(100%)">세피아</button>
+    <button data-filter="invert(100%)">반전</button>
+    <button data-filter="none">원본</button>
+    <script>
+      const input = document.querySelector("input");
+      const img = document.querySelector('img');
+      input.addEventListener("change", e => {
+        img.src = URL.createObjectURL(e.target.files[0]);
+      });
+
+      document.body.addEventListener('click', e =>{
+        if(!e.target.dataset) return;
+        img.style.filter = e.target.dataset.filter
+      })
+    </script>
+  </body>
+</html>
