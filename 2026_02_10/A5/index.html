@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    body{background-color: rgb(223, 223, 223);}
+    h1{padding: 20px 0;}
+    .flex{display: flex; }
+    .container{align-items: center; flex-direction: column;}
+    ul{flex-direction: column; background-color: white; border-radius: 10px;}
+    span{width: 70px; height: 30px; border-radius: 20px; background-color: rgb(0, 102, 255); color: white; display: flex; justify-content: center; align-items: center;}
+    li{padding: 10px; width: 700px; padding: 30px; border-bottom: 1px solid rgba(128, 128, 128, 0.26); align-items: center; height: 50px; justify-content: space-between;}
+    li > .flex{align-items: center; gap: 20px;}
+    .important{background-color: red !important;}
+  </style>
+</head>
+<body>
+  <div class="container flex">
+    <h1>공지사항</h1>
+    <ul class="flex">
+      <li class="flex"><div class="flex"><span class="important">중요</span> <p class="title">2026년 WorldSkills 대회 일정 안내</p></div> <p class="date">2026-01-15</p></li>
+      <li class="flex"><div class="flex"><span>공지</span> <p class="title">웹디자인 기술대회 참가신청 마감</p></div> <p class="date">2026-01-10</p></li>
+      <li class="flex"><div class="flex"><span>안내</span> <p class="title">온라인 교육과정 개설 안내</p></div> <p class="date">2026-01-08</p></li>
+      <li class="flex"><div class="flex"><span>공지</span> <p class="title">2026년 1분기 교육일정 발표</p></div> <p class="date">2026-01-05</p></li>
+      <li class="flex"><div class="flex"><span>안내</span> <p class="title">홈페이지 점검 일정 안내</p></div> <p class="date">2026-01-03</p></li>
+    </ul>
+  </div>
+</body>
+</html>

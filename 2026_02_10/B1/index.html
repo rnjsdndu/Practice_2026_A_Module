@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>비밀번호</p><input type="text" style="outline: none; border-color: black;">
+
+  <script>
+    const input = document.querySelector('input')
+    
+    input.addEventListener('input',e=>{
+      const value = e.target.value
+      const A = /[A-Z]/.test(value);
+      const B = /\d+/.test(value)
+      const C = /[!@#$%^&*()]/.test(value)
+
+      if(value == '') {
+        input.style.borderColor = 'black'
+      } else if(value.length < 6) {
+        input.style.borderColor = 'red'
+      } else if (value.length >= 8 && A && B && C) {
+        input.style.borderColor = 'green'
+      } else if(value.length >= 6 && (A || B)) {
+        input.style.borderColor = 'orange'
+      } 
+    })
+  </script>
+</body>
+</html>

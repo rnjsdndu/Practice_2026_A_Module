@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    .flex{display: flex;}
+    .container {width: 500px; flex-direction: column; gap: 20px;}
+    .container > div{width: 100%; height: 100px; align-items: center; gap: 50px;}
+    .container p{font-weight: bold; font-size: 24px;}
+    .circle{width: 100px; height: 100px; background-color: green; border-radius: 100%;}
+    .dotted{border-left: 10px dotted; margin-left: 45px;}
+    .container div:nth-child(1){color: green;}
+    .container div:nth-child(2){border-color: green;}
+    .container div:nth-child(3) .circle{background-color: blue;}
+    .container div:nth-child(3){color: rgb(0, 0, 194);}
+    .container div:nth-child(4){border-color: blue;}
+    .container div:nth-child(5) .circle{background-color: skyblue;}
+    .container div:nth-child(5){color: rgb(117, 171, 192);}
+    .container > .flex > .flex{flex-direction: column;}
+    .step{font-size: 18px !important; color: rgba(128, 128, 128, 0.562);}
+  </style>
+</head>
+<body>
+  <div class="container flex">
+    <div class="flex"><div class="circle"></div><div class="flex"><p class="step">STEP 1</p><p>completed</p></div></div>
+    <div class="dotted"></div>
+    <div class="flex"><div class="circle"></div><div class="flex"><p class="step">STEP 2</p><p>In progress</p></div></div>
+    <div class="dotted"></div>
+    <div class="flex"><div class="circle"></div><div class="flex"><p class="step">STEP 3</p><p>Pending</p></div></div>
+  </div>
+</body>
+</html>
