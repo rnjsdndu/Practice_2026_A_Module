@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container{display: flex;}
+    @media (min-width:768px) and (max-width:1023px) {
+      .container{display: grid; grid-template-columns: repeat(2,1fr);}
+    }
+
+    @media (max-width:767px) {
+      .container{display: block;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <img src="./card1.jpg" alt="card1" title="이미지 샘플카드">
+      <button>더보기</button>
+    </div>
+    <div>
+      <img src="./card2.jpg" alt="card2" title="이미지 샘플카드">
+      <button>더보기</button>
+    </div>
+    <div>
+      <img src="./card3.jpg" alt="card3" title="이미지 샘플카드">
+      <button>더보기</button>
+    </div>
+    <div>
+      <img src="./card4.jpg" alt="card4" title="이미지 샘플카드">
+      <button>더보기</button>
+    </div>
+  </div>
+</body>
+</html>

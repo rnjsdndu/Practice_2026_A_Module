@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      *{margin: 0; padding: 0; box-sizing: border-box; list-style: none}
+      .flex{display: flex;}
+      footer{color: rgb(175, 175, 175); width: 1000px; height: 300px; background-color: rgb(44, 62, 80);}
+      strong{font-size: 24px; color: rgb(0, 82, 206);}
+      footer > .flex{justify-content: space-between;}
+      footer .move{ gap: 30px;}
+      .list-title{color: white; font-size: 19px; font-weight: bold;}
+      footer > div:nth-child(1){padding: 10px; height: 200px; align-items: center; border-bottom: 1px solid rgb(206, 206, 206);}
+      footer > div:nth-child(2){padding: 10px; align-items: center;}
+    </style>
+  </head>
+  <body>
+    <footer>
+      <div class="flex">
+        <div>
+          <strong>WorldSkills Korea</strong>
+          <p>
+            세계기능올림픽대회를 통해 기능인재 양성과 <br />
+            기능의 우수성을 널리 알리고 있습니다.
+          </p>
+        </div>
+        <div class="flex move">
+          <ul>
+            <li class="list-title">바로가기</li>
+            <li>기능경기대회</li>
+            <li>교육과정</li>
+            <li>자료실</li>
+            <li>공지사항</li>
+          </ul>
+          <ul>
+            <li class="list-title">고객지원</li>
+            <li>FAQ</li>
+            <li>1:1 문의</li>
+            <li>이용약관</li>
+            <li>개인정보처리방침</li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex">
+        <p>
+          주소: 서울특별시 강남구 테헤란로 123 WorldSkills 빌딩 <br>
+전화: 02-1234-5678 | 이메일: info@worldskills.kr
+        </p>
+        <p>
+          © 2026 WorldSkills Korea. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
